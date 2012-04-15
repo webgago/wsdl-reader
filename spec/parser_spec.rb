@@ -22,7 +22,7 @@ describe "WSDL Parser" do
 
       its(:messages) { should be_a WSDL::Reader::Messages }
 
-      its(:portTypes) { should be_a SOAP::WSDL::PortTypes }
+      its(:port_types) { should be_a WSDL::Reader::PortTypes }
 
       its(:bindings) { should be_a SOAP::WSDL::Bindings }
 
@@ -45,7 +45,7 @@ describe "WSDL Parser" do
 
       its('messages.keys') { should eq %w{getFirstName getLastName UserNameResponse} }
 
-      its('portTypes.keys') { should eq %w{UserService} }
+      its('port_types.keys') { should eq %w{UserService} }
 
       its('bindings.keys') { should eq %w{UserServicePortBinding} }
 

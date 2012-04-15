@@ -2,7 +2,7 @@ require 'open-uri'
 require 'rexml/document'
 
 require 'wsdl-reader/message'
-require 'wsdl-reader/portType'
+require 'wsdl-reader/port_type'
 require 'wsdl-reader/binding'
 require 'wsdl-reader/service'
 require 'wsdl-reader/xsd'
@@ -10,7 +10,7 @@ require 'wsdl-reader/xsd'
 module WSDL
   module Reader
     class Parser
-      attr_reader :types, :messages, :portTypes, :bindings, :services
+      attr_reader :types, :messages, :port_types, :bindings, :services
       attr_reader :prefixes, :target_namespace
       attr_reader :document, :uri
 
@@ -18,7 +18,7 @@ module WSDL
         @uri = uri
         @types = SOAP::XSD.new()
         @messages = WSDL::Reader::Messages.new
-        @portTypes = SOAP::WSDL::PortTypes.new
+        @port_types = WSDL::Reader::PortTypes.new
         @bindings = SOAP::WSDL::Bindings.new
         @services = SOAP::WSDL::Services.new
 
@@ -88,7 +88,7 @@ module WSDL
 
       def process_port_type(element)
         name = element.attributes['name']
-        @portTypes[name] = SOAP::WSDL::PortType.new(element)
+        @port_types[name] = WSDL::Reader::PortType.new(element)
       end
 
       def process_binding(element)

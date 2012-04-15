@@ -50,7 +50,8 @@ module SOAP
         r = ""
         
         min, max = getOccures( args )
-        if SOAP::XSD::ANY_SIMPLE_TYPE.include?( self[:type].nns )
+
+        if self[:type].is_a?(String) && SOAP::XSD::ANY_SIMPLE_TYPE.include?( self[:type].nns )
           r << SOAP::XSD.displayBuiltinType( self[:name], args, min, max )
         else
           case types[self[:type].nns][:type]

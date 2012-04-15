@@ -69,6 +69,7 @@ module SOAP
     end
 
     private
+
     def processType(type)
       case type.name
         when "element"
@@ -90,7 +91,7 @@ module SOAP
               :value => @simpleTypes[type.attributes['name']]
           }
         else
-          warn "Ignoring type '#{type.name}' in #{__FILE__}:#{__LINE__}"
+          warn "Ignoring type '#{type.name}' in #{__FILE__}:#{__LINE__}" if ::WSDL::Reader.debugging?
       end
     end
   end
