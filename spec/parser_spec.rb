@@ -24,7 +24,7 @@ describe "WSDL Parser" do
 
       its(:port_types) { should be_a WSDL::Reader::PortTypes }
 
-      its(:bindings) { should be_a SOAP::WSDL::Bindings }
+      its(:bindings) { should be_a WSDL::Reader::Bindings }
 
       its(:services) { should be_a SOAP::WSDL::Services }
     end

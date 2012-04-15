@@ -58,7 +58,7 @@ module SOAP
 
     # Return available SOAP actions
     def operations
-      @wsdl.bindings.getOperations(@binding)
+      @wsdl.bindings.get_operations(@binding)
     end
     
     # Call a method for the current Request
@@ -72,7 +72,7 @@ module SOAP
       args = (args || {}).keys_to_sym!
 
       # Get Binding
-      binding = @wsdl.bindings.getBindingForOperationName(@binding, method_name)
+      binding = @wsdl.bindings.get_binding_for_operation_name(@binding, method_name)
       if binding.size == 0
         raise SOAP::LCNoMethodError, "Undefined method `#{method_name}'"
       elsif binding.size > 1

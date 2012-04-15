@@ -19,7 +19,7 @@ module WSDL
         @types = SOAP::XSD.new()
         @messages = WSDL::Reader::Messages.new
         @port_types = WSDL::Reader::PortTypes.new
-        @bindings = SOAP::WSDL::Bindings.new
+        @bindings = WSDL::Reader::Bindings.new
         @services = SOAP::WSDL::Services.new
 
         @prefixes = Hash.new
@@ -93,7 +93,7 @@ module WSDL
 
       def process_binding(element)
         name = element.attributes['name']
-        @bindings[name] = SOAP::WSDL::Binding.new(element)
+        @bindings[name] = WSDL::Reader::Binding.new(element)
       end
 
       def process_service(element)

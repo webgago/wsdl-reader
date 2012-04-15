@@ -2,21 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f298bda0-1380-4de3-8e5d-9bdcd0e830b6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/wsdl-reader/port_type.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/fixtures/OneFileUserService.wsdl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/port_type_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/request_spec.rb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/wsdl-reader/portType.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/portType_spec.rb" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/binding_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/wsdl-reader.iml" afterPath="$PROJECT_DIR$/.idea/wsdl-reader.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/wsdl-reader.rb" afterPath="$PROJECT_DIR$/lib/wsdl-reader.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/wsdl-reader/binding.rb" afterPath="$PROJECT_DIR$/lib/wsdl-reader/binding.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/wsdl-reader/parser.rb" afterPath="$PROJECT_DIR$/lib/wsdl-reader/parser.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/wsdl-reader/request.rb" afterPath="$PROJECT_DIR$/lib/wsdl-reader/request.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/wsdl-reader/response.rb" afterPath="$PROJECT_DIR$/lib/wsdl-reader/response.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/wsdl-reader/wsdl.rb" afterPath="$PROJECT_DIR$/lib/wsdl-reader/wsdl.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/wsdl-reader/xsd.rb" afterPath="$PROJECT_DIR$/lib/wsdl-reader/xsd.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/wsdl-reader/xsd/element.rb" afterPath="$PROJECT_DIR$/lib/wsdl-reader/xsd/element.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/parser_spec.rb" afterPath="$PROJECT_DIR$/spec/parser_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsdl-reader.gemspec" afterPath="$PROJECT_DIR$/wsdl-reader.gemspec" />
     </list>
     <ignored path="wsdl-reader.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +35,54 @@
     <favorites_list name="wsdl-reader" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="binding_spec.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/binding_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="63" column="69" selection-start="2497" selection-end="2497" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1334508574000" expanded="true" signature="47:2511" placeholder="do ... end" />
+                <marker date="1334508574000" expanded="true" signature="1558:2506" placeholder="do ... end" />
+                <marker date="1334508574000" expanded="true" signature="1580:2127" placeholder=" ... end" />
+                <marker date="1334508574000" expanded="true" signature="2141:2238" placeholder="do ... end" />
+                <marker date="1334508574000" expanded="true" signature="2261:2285" placeholder="{ ... }" />
+                <marker date="1334508574000" expanded="true" signature="2301:2339" placeholder="{ ... }" />
+                <marker date="1334508574000" expanded="true" signature="2355:2386" placeholder="{ ... }" />
+                <marker date="1334508574000" expanded="true" signature="2403:2427" placeholder="{ ... }" />
+                <marker date="1334508574000" expanded="true" signature="2448:2500" placeholder="{ ... }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="binding.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/binding.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="27" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.024958402">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wsdl-reader.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/wsdl-reader.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="42" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserService.wsdl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/fixtures/UserService.wsdl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="10" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -53,24 +96,40 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/spec/fixtures/UserService.xsd" />
-        <option value="$PROJECT_DIR$/spec/message_spec.rb" />
-        <option value="$PROJECT_DIR$/spec/portType_spec.rb" />
-        <option value="$PROJECT_DIR$/lib/wsdl-reader/portType.rb" />
-        <option value="$PROJECT_DIR$/spec/port_type_spec.rb" />
         <option value="$PROJECT_DIR$/lib/wsdl-reader/port_type.rb" />
-        <option value="$PROJECT_DIR$/lib/wsdl-reader/parser.rb" />
-        <option value="$PROJECT_DIR$/spec/parser_spec.rb" />
         <option value="$PROJECT_DIR$/lib/wsdl-reader/response.rb" />
         <option value="$PROJECT_DIR$/lib/wsdl-reader/wsdl.rb" />
         <option value="$PROJECT_DIR$/spec/fixtures/OneFileUserService.wsdl" />
         <option value="$PROJECT_DIR$/lib/wsdl-reader/request.rb" />
         <option value="$PROJECT_DIR$/lib/wsdl-reader/xsd/element.rb" />
         <option value="$PROJECT_DIR$/lib/wsdl-reader/xsd.rb" />
-        <option value="$PROJECT_DIR$/lib/wsdl-reader.rb" />
         <option value="$PROJECT_DIR$/spec/request_spec.rb" />
+        <option value="$PROJECT_DIR$/lib/wsdl-reader/parser.rb" />
+        <option value="$PROJECT_DIR$/spec/parser_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/port_type_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/binding_spec.rb" />
+        <option value="$PROJECT_DIR$/wsdl-reader.gemspec" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/lib/wsdl-reader.rb" />
+        <option value="$PROJECT_DIR$/lib/wsdl-reader/binding.rb" />
       </list>
     </option>
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CSS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -107,6 +166,106 @@
               <option name="myItemId" value="wsdl-reader" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wsdl-reader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activesupport (v3.2.3, RVM: ruby-1.9.3-p0 [global]) [gem]" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wsdl-reader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activesupport (v3.2.3, RVM: ruby-1.9.3-p0 [global]) [gem]" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="active_support" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wsdl-reader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activesupport (v3.2.3, RVM: ruby-1.9.3-p0 [global]) [gem]" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="active_support" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core_ext" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wsdl-reader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activesupport (v3.2.3, RVM: ruby-1.9.3-p0 [global]) [gem]" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="active_support" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core_ext" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hash" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -142,6 +301,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fixtures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wsdl-reader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wsdl-reader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -161,28 +338,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="wsdl-reader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wsdl-reader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wsdl-reader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wsdl-reader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xsd" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -191,7 +346,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -322,6 +481,7 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
+    <configuration useDefault="true">$USER_HOME$/.subversion_IDEA</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -333,14 +493,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-773" width="1382" height="781" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868218" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2522388" sideWeight="0.6713178" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2522388" sideWeight="0.6713178" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -396,117 +556,124 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/wsdl.rb">
+    <entry file="file://$PROJECT_DIR$/spec/request_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="35" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/fixtures/UserService.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="14" selection-start="0" selection-end="1764" vertical-scroll-proportion="0.0732899">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/error.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="8" selection-start="190" selection-end="190" vertical-scroll-proportion="0.35472974">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs19/object.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="778" column="8" selection-start="25421" selection-end="25421" vertical-scroll-proportion="0.33277026">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/xsd/sequence.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.1402028">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/core_ext.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="6" selection-start="28" selection-end="28" vertical-scroll-proportion="0.025337838">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/xsd/element.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="32" selection-start="3109" selection-end="3120" vertical-scroll-proportion="-0.4054054">
+        <state line="5" column="3" selection-start="153" selection-end="153" vertical-scroll-proportion="0.12214984">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/request.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="23" selection-start="4239" selection-end="4239" vertical-scroll-proportion="0.4326123">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/spec_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="12" selection-start="706" selection-end="706" vertical-scroll-proportion="0.6081081">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/fixtures/OneFileUserService.wsdl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="16" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="tag#xs:element#2;tag#xs:schema#0;tag#types#0;tag#definitions#0" expanded="false" />
-            <element signature="tag#xs:element#3;tag#xs:schema#0;tag#types#0;tag#definitions#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs19/kernel.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="8" selection-start="4833" selection-end="4833" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/xsd/complextype.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="16" selection-start="5406" selection-end="5410" vertical-scroll-proportion="0.43074325">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/xsd.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="81" selection-start="3007" selection-end="3007" vertical-scroll-proportion="1.5962838">
+        <state line="74" column="42" selection-start="2425" selection-end="2425" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/parser.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="15" selection-start="2549" selection-end="2549" vertical-scroll-proportion="0.0">
+        <state line="95" column="40" selection-start="2728" selection-end="2728" vertical-scroll-proportion="0.95114005">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/parser_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="72" selection-start="264" selection-end="322" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/message_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="638" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/port_type_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="4" selection-start="501" selection-end="501" vertical-scroll-proportion="0.34201956">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/binding_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="69" selection-start="2497" selection-end="2497" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1334508574000" expanded="true" signature="47:2511" placeholder="do ... end" />
+            <marker date="1334508574000" expanded="true" signature="1558:2506" placeholder="do ... end" />
+            <marker date="1334508574000" expanded="true" signature="1580:2127" placeholder=" ... end" />
+            <marker date="1334508574000" expanded="true" signature="2141:2238" placeholder="do ... end" />
+            <marker date="1334508574000" expanded="true" signature="2261:2285" placeholder="{ ... }" />
+            <marker date="1334508574000" expanded="true" signature="2301:2339" placeholder="{ ... }" />
+            <marker date="1334508574000" expanded="true" signature="2355:2386" placeholder="{ ... }" />
+            <marker date="1334508574000" expanded="true" signature="2403:2427" placeholder="{ ... }" />
+            <marker date="1334508574000" expanded="true" signature="2448:2500" placeholder="{ ... }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="18" selection-start="47" selection-end="47" vertical-scroll-proportion="0.024429968">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsdl-reader.gemspec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="41" selection-start="843" selection-end="843" vertical-scroll-proportion="0.5863192">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p0@global/gems/activesupport-3.2.3/lib/active_support/core_ext/hash/indifferent_access.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/wsdl-reader.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="34" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
+        <state line="0" column="42" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/request_spec.rb">
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p0@global/gems/activesupport-3.2.3/lib/active_support/core_ext/hash/keys.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="3" selection-start="153" selection-end="153" vertical-scroll-proportion="0.12214984">
+        <state line="24" column="42" selection-start="598" selection-end="598" vertical-scroll-proportion="0.38110748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p0@global/gems/activesupport-3.2.3/lib/active_support/xml_mini/libxml.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="10" selection-start="687" selection-end="687" vertical-scroll-proportion="-0.10749186">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/rubies/ruby-1.9.3-p0/lib/ruby/1.9.1/rexml/syncenumerator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="8" selection-start="579" selection-end="579" vertical-scroll-proportion="0.5863192">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/fixtures/UserService.wsdl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="10" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/wsdl-reader/binding.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="27" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.024958402">
           <folding />
         </state>
       </provider>

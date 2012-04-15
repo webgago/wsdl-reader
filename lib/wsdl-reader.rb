@@ -1,3 +1,4 @@
+require "active_support/core_ext/hash/keys"
 require "wsdl-reader/version"
 require "wsdl-reader/error"
 require "wsdl-reader/parser"
