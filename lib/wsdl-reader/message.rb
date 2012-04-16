@@ -14,6 +14,11 @@ module WSDL
         process_all_parts element
       end
 
+      def element
+        warn "More than one parts!" if parts.size > 1
+        parts.map { |name, hash| hash[:element] }.first
+      end
+
       protected
 
       def process_all_parts(element)

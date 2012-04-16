@@ -4,6 +4,7 @@ require 'rexml/document'
 require 'wsdl-reader/message'
 require 'wsdl-reader/port_type'
 require 'wsdl-reader/binding'
+require 'wsdl-reader/operation'
 require 'wsdl-reader/service'
 require 'wsdl-reader/xsd'
 
@@ -29,6 +30,10 @@ module WSDL
 
         process_attributes @document.root.attributes
         process_content @document.root.children
+      end
+
+      def operations
+        bindings.all_operations
       end
 
       private
