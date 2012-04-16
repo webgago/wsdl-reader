@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Anton"]
   s.email       = ["a.sozontov@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{WSDL for ruby}
+  s.description = %q{Read WSDL file and parse messages, bindings, portTypes and services}
 
   s.rubyforge_project = "wsdl-reader"
 
