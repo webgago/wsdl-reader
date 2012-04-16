@@ -13,7 +13,7 @@ module SOAP
     # Call a method for the current WSDL and get the corresponding SOAP::Request
     #
     # Example:
-    #   wsdl = SOAP::LC.new().wsdl( "http://...")
+    #   wsdl = SOAP::LC.new.wsdl("http://...")
     #   request = wsdl.myMethod(:param1 => "hello")
     #     # => #<SOAP::Request:0xNNNNNN>
     def method_missing(id, *args) 
@@ -28,7 +28,7 @@ module SOAP
     # Call a method for the current WSDL and get the corresponding SOAP::Request
     #
     # Example:
-    #   wsdl = SOAP::LC.new().wsdl( "http://...")
+    #   wsdl = SOAP::LC.new.wsdl("http://...")
     #   request = wsdl.call("myMethod", { :param1 => "hello" })
     #     # => #<SOAP::Request:0xNNNNNN>
     def call(name, args = {})
@@ -38,11 +38,11 @@ module SOAP
     # Get a SOAP::Request object for the current WSDL
     #
     # Example:
-    #   wsdl = SOAP::LC.new().wsdl( "http://...")
-    #   request = wsdl.request( )
+    #   wsdl = SOAP::LC.new.wsdl("http://...")
+    #   request = wsdl.request
     #     # => #<SOAP::Request:0xNNNNNN>
     def request(binding = nil)
       SOAP::Request.new(@parse, binding)
     end
-  end      
+  end
 end
