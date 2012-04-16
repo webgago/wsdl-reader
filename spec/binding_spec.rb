@@ -49,27 +49,27 @@ describe "WSDL Binding" do
   context "WSDL::Reader::Binding" do
 
     def operations
-      { "getFirstName" => { :name       => "getFirstName",
-                            :soapAction => "",
-                            :input      => { :body => { :use => "literal" } },
-                            :output     => { :body => { :use => "literal" } } },
-
-        "getLastName"  => { :name       => "getLastName",
-                            :soapAction => "",
-                            :input      => { :body => { :use => "literal" } },
-                            :output     => { :body => { :use => "literal" } } }
-      }
+      %w{getFirstName getLastName}
     end
 
+    let(:parser) {  WSDL::Reader::Parser.new('spec/fixtures/UserService.wsdl') }
     subject do
-      WSDL::Reader::Parser.new('spec/fixtures/UserService.wsdl').bindings.values.first
+      parser.bindings.values.first
     end
 
-    its(:operations) { should eq operations }
+    its('operations.keys') { should eq operations }
     its(:name) { should eq "UserServicePortBinding" }
     its(:type) { should eq "tns:UserService" }
     its(:style) { should eq "document" }
     its(:transport) { should eq "http://schemas.xmlsoap.org/soap/http" }
+
+    it "#operation? should find for operation name" do
+      subject.operation?("getFirstName").should be_true
+    end
+
+    it "#lookup_port_type should lookup port_type from given port_types" do
+      subject.lookup_port_type(parser.port_types).name.should eq "UserService"
+    end
   end
 
 end

@@ -20,7 +20,7 @@ module WSDL
       end
 
       def all_operations
-        self.map { |_, binding| binding.operations.keys }.flatten
+        self.map { |_, binding| binding.operations.values }.flatten
       end
 
       def operation?(operation_name)
@@ -36,115 +36,49 @@ module WSDL
       attr_reader :transport
 
       def initialize(element)
-        @operations = Hash.new
+        @operations = Operations.new
         @name       = element.attributes['name']
         @type       = element.attributes['type'] # because of Object#type
         @style      = nil
         @transport  = nil
 
         # Process all binding and operation
-        element.find_all { |e| e.class == REXML::Element }.each { |operation|
-          case operation.name
+        element.find_all { |e| e.class == REXML::Element }.each do |operation_element|
+          case operation_element.name
             when "binding" # soap:binding
-              store_style_and_transport(element, operation)
+              store_style_and_transport(operation_element)
 
             when "operation"
-              store_operation_name(element, operation)
-
-              operation.find_all { |e| e.class == REXML::Element }.each { |action|
-                store_action(action, element, operation)
-              }
+              append_operation(operation_element)
             else
               warn "Ignoring element `#{operation.name}' in binding `#{element.attributes['name']}'"
           end
-        }
+        end
       end
 
       def operation?(name)
         operations.include? name
       end
 
+      def lookup_port_type(port_types)
+        port_types[type.split(':').last]
+      end
+
       protected
 
-      def store_style_and_transport(element, operation)
-        operation.attributes.each do |name, value|
+      def append_operation(operation_element)
+        @operations << Operation.new(operation_element, self)
+      end
+
+      def store_style_and_transport(operation_element)
+        operation_element.attributes.each do |name, value|
           case name
             when 'style'
               @style = value
             when 'transport'
               @transport = value
-            else
-              warn "Ignoring attribute `#{name}' for wsdlsoap:binding in binding `#{element.attributes['name']}'"
           end
         end
-      end
-
-      def store_operation_name(element, operation)
-        operation.attributes.each do |name, value|
-          case name
-            when 'name'
-              current_operation(operation)[:name] = value
-            else
-              warn "Ignoring attribute `#{name}' for operation `#{operation.attributes['name']}' in binding `#{element.attributes['name']}'"
-          end
-        end
-      end
-
-      def fill_action(action, operation)
-        filling_action = { }
-
-        action.attributes.each do |name, value|
-          case name
-            when 'name'
-              filling_action[:name] = value
-            else
-              warn "Ignoring attribute `#{name}' in #{action.name} `#{action.attributes['name']}' in operation `#{operation.attributes['name']}' for binding `#{element.attributes['name']}'"
-          end
-        end
-
-        # Store body
-        action.find_all { |e| e.class == REXML::Element }.each do |body|
-          case body.name
-            when "body"
-              filling_action[:body] = { }
-
-              body.attributes.each { |name, value| filling_action[:body][name.to_sym] = value }
-            else
-              warn "Ignoring element `#{body.name}' in #{action.name} `#{action.attributes['name']}' in operation `#{operation.attributes['name']}' for binding `#{element.attributes['name']}'"
-          end
-        end
-        filling_action
-      end
-
-      def store_action(action, element, operation)
-        case action.name
-          when "operation" # soap:operation
-            action.attributes.each do |name, value|
-              case name
-                when 'soapAction'
-                  current_operation(operation)[:soapAction] = value
-                when 'style'
-                  current_operation(operation)[:style] = value
-                else
-                  warn "Ignoring attribut `#{name}' for wsdlsoap:operation in operation `#{operation.attributes['name']}' in binding `#{element.attributes['name']}'"
-              end
-            end
-          when "input"
-            current_operation(operation)[:input] = fill_action(action, operation)
-
-          when "output"
-            current_operation(operation)[:output] = fill_action(action, operation)
-
-          when "fault"
-            current_operation(operation)[:fault] = fill_action(action, operation)
-
-          else
-            warn "Ignoring element `#{action.name}' in operation `#{operation.attributes['name']}' for binding `#{element.attributes['name']}'"
-        end
-      end
-
-      def current_operation(operation)
-        @operations[operation.attributes['name']] ||= { }
       end
 
     end

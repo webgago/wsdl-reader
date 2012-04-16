@@ -1,6 +1,12 @@
 module WSDL
   module Reader
     class PortTypes < Hash
+      def lookup_operation_message(type, operation, messages)
+        each do |_, port_type|
+          message = port_type.lookup_operation_message type, operation, messages
+          return message if message
+        end
+      end
     end
 
     class PortType
@@ -12,6 +18,10 @@ module WSDL
         @name = element.attributes['name']
 
         process_all_operations(element)
+      end
+
+      def lookup_operation_message(type, operation, messages)
+        messages[@operations[operation.name][type][:message].split(':').last]
       end
 
       protected
