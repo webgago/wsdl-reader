@@ -22,6 +22,10 @@ module WSDL
       def all_operations
         self.map { |_, binding| binding.operations.keys }.flatten
       end
+
+      def operation?(operation_name)
+        any? { |_, binding| binding.operation? operation_name }
+      end
     end
 
     class Binding

@@ -7,7 +7,8 @@ describe "WSDL Parser" do
   end
 
   context "parsing 'spec/fixtures/UserService.wsdl'" do
-    subject { WSDL::Reader::Parser.new('spec/fixtures/UserService.wsdl') }
+    let(:parser) { WSDL::Reader::Parser.new('spec/fixtures/UserService.wsdl') }
+    subject { parser }
 
     context "attributes types" do
       it { should be_a WSDL::Reader::Parser }
@@ -50,6 +51,12 @@ describe "WSDL Parser" do
       its('bindings.keys') { should eq %w{UserServicePortBinding} }
 
       its('services.keys') { should eq %w{UserService} }
+    end
+
+    context "methods" do
+
+      its(:get_operations) { should eql parser.bindings.get_operations }
+
     end
   end
 

@@ -36,6 +36,14 @@ describe "WSDL Binding" do
     it "#all_operations should eql to #get_operations(nil)" do
       subject.get_operations.should eql subject.all_operations
     end
+
+    it "#operation? should return true if any binding include is operation_name" do
+      subject.operation?("getFirstName").should be_true
+    end
+
+    it "#operation? should return false if all bindings dont include is operation_name" do
+      subject.operation?("not_existing_operation").should be_false
+    end
   end
 
   context "WSDL::Reader::Binding" do

@@ -14,6 +14,8 @@ module WSDL
       attr_reader :prefixes, :target_namespace
       attr_reader :document, :uri
 
+      delegate :get_operations, to: :bindings
+
       def initialize(uri)
         @uri = uri
         @types = SOAP::XSD.new()
