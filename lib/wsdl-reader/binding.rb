@@ -37,10 +37,10 @@ module WSDL
 
       def initialize(element)
         @operations = Hash.new
-        @name       = element.attributes['name']
-        @type       = element.attributes['type'] # because of Object#type
-        @style      = nil
-        @transport  = nil
+        @name = element.attributes['name']
+        @type = element.attributes['type'] # because of Object#type
+        @style = nil
+        @transport = nil
 
         # Process all binding and operation
         element.find_all { |e| e.class == REXML::Element }.each { |operation|
@@ -61,10 +61,16 @@ module WSDL
       end
 
       def operation?(name)
-        operations.include? name
+        operations.include? camelize_operation(name)
       end
 
       protected
+
+      def camelize_operation(name)
+        name.to_s.tap do |name_string|
+          return name_string.camelize :lower if name_string.underscore == name_string
+        end
+      end
 
       def store_style_and_transport(element, operation)
         operation.attributes.each do |name, value|
@@ -90,7 +96,7 @@ module WSDL
         end
       end
 
-      def fill_action(action, operation)
+      def fill_action(action, operation, element)
         filling_action = { }
 
         action.attributes.each do |name, value|
@@ -109,6 +115,12 @@ module WSDL
               filling_action[:body] = { }
 
               body.attributes.each { |name, value| filling_action[:body][name.to_sym] = value }
+
+            when "fault"
+              filling_action[:body] = { }
+
+              body.attributes.each { |name, value| filling_action[:body][name.to_sym] = value }
+
             else
               warn "Ignoring element `#{body.name}' in #{action.name} `#{action.attributes['name']}' in operation `#{operation.attributes['name']}' for binding `#{element.attributes['name']}'"
           end
@@ -130,13 +142,13 @@ module WSDL
               end
             end
           when "input"
-            current_operation(operation)[:input] = fill_action(action, operation)
+            current_operation(operation)[:input] = fill_action(action, operation, element)
 
           when "output"
-            current_operation(operation)[:output] = fill_action(action, operation)
+            current_operation(operation)[:output] = fill_action(action, operation, element)
 
           when "fault"
-            current_operation(operation)[:fault] = fill_action(action, operation)
+            current_operation(operation)[:fault] = fill_action(action, operation, element)
 
           else
             warn "Ignoring element `#{action.name}' in operation `#{operation.attributes['name']}' for binding `#{element.attributes['name']}'"

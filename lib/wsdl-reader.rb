@@ -1,5 +1,6 @@
 require "active_support/core_ext/hash/keys"
 require "active_support/core_ext/module/delegation"
+require "active_support/core_ext/string/inflections"
 require "wsdl-reader/version"
 require "wsdl-reader/error"
 require "wsdl-reader/parser"
