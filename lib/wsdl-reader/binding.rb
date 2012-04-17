@@ -57,7 +57,7 @@ module WSDL
       end
 
       def operation?(name)
-        operations.include? name
+        operations.include? camelize_operation(name)
       end
 
       def lookup_port_type(port_types)
@@ -79,6 +79,86 @@ module WSDL
               @transport = value
           end
         end
+      end
+
+      def camelize_operation(name)
+        name.to_s.tap do |name_string|
+          return name_string.camelize :lower if name_string.underscore == name_string
+        end
+      end
+      
+      def store_operation_name(element, operation)
+        operation.attributes.each do |name, value|
+          case name
+            when 'name'
+              current_operation(operation)[:name] = value
+            else
+              warn "Ignoring attribute `#{name}' for operation `#{operation.attributes['name']}' in binding `#{element.attributes['name']}'"
+          end
+        end
+      end
+
+      def fill_action(action, operation, element)
+        filling_action = { }
+
+        action.attributes.each do |name, value|
+          case name
+            when 'name'
+              filling_action[:name] = value
+            else
+              warn "Ignoring attribute `#{name}' in #{action.name} `#{action.attributes['name']}' in operation `#{operation.attributes['name']}' for binding `#{element.attributes['name']}'"
+          end
+        end
+
+        # Store body
+        action.find_all { |e| e.class == REXML::Element }.each do |body|
+          case body.name
+            when "body"
+              filling_action[:body] = { }
+
+              body.attributes.each { |name, value| filling_action[:body][name.to_sym] = value }
+
+            when "fault"
+              filling_action[:body] = { }
+
+              body.attributes.each { |name, value| filling_action[:body][name.to_sym] = value }
+
+            else
+              warn "Ignoring element `#{body.name}' in #{action.name} `#{action.attributes['name']}' in operation `#{operation.attributes['name']}' for binding `#{element.attributes['name']}'"
+          end
+        end
+        filling_action
+      end
+
+      def store_action(action, element, operation)
+        case action.name
+          when "operation" # soap:operation
+            action.attributes.each do |name, value|
+              case name
+                when 'soapAction'
+                  current_operation(operation)[:soapAction] = value
+                when 'style'
+                  current_operation(operation)[:style] = value
+                else
+                  warn "Ignoring attribut `#{name}' for wsdlsoap:operation in operation `#{operation.attributes['name']}' in binding `#{element.attributes['name']}'"
+              end
+            end
+          when "input"
+            current_operation(operation)[:input] = fill_action(action, operation, element)
+
+          when "output"
+            current_operation(operation)[:output] = fill_action(action, operation, element)
+
+          when "fault"
+            current_operation(operation)[:fault] = fill_action(action, operation, element)
+
+          else
+            warn "Ignoring element `#{action.name}' in operation `#{operation.attributes['name']}' for binding `#{element.attributes['name']}'"
+        end
+      end
+
+      def current_operation(operation)
+        @operations[operation.attributes['name']] ||= { }
       end
 
     end
