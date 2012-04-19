@@ -1,10 +1,16 @@
 module WSDL
   module Reader
     class PortTypes < Hash
-      def lookup_operation_message(type, operation, messages)
+      def lookup_operation_message(type, operation, messages) # TODO: lookup_message_by_operation
         each do |_, port_type|
           message = port_type.lookup_operation_message type, operation, messages
           return message if message
+        end
+      end
+
+      def lookup_operations_by_message(type, message)
+        inject([]) do |array, (_, port_type)|
+          array + port_type.lookup_operations_by_message(type, message)
         end
       end
     end
@@ -15,13 +21,29 @@ module WSDL
 
       def initialize(element)
         @operations = Hash.new
-        @name = element.attributes['name']
+        @name       = element.attributes['name']
 
         process_all_operations(element)
       end
 
       def lookup_operation_message(type, operation, messages)
-        messages[@operations[operation.name][type][:message].split(':').last]
+        operation_name = operation.is_a?(Operation) ? operation.name : operation.to_s
+        messages[@operations[operation_name][type][:message].split(':').last]
+      end
+
+      def lookup_operations_by_message(type, message)
+        ops = @operations.values.select do |operation|
+          operation_message? type, operation, message
+        end
+        ops.map do |operation_hash|
+          operation_hash[:name]
+        end
+      end
+
+      def operation_message?(type, operation, message)
+        message_name = message.is_a?(Message) ? message.name : message.to_s
+        operation[type][:message] == message_name ||
+            operation[type][:message].split(':').last == message_name
       end
 
       protected
@@ -89,17 +111,17 @@ module WSDL
 
               operation.find_all { |e| e.class == REXML::Element }.each do |action|
                 case action.name
-                when "input"
-                  store_input(action, element, operation)
+                  when "input"
+                    store_input(action, element, operation)
 
-                when "output"
-                  store_output(action, element, operation)
+                  when "output"
+                    store_output(action, element, operation)
 
-                when "fault"
-                  store_fault(action, element, operation)
+                  when "fault"
+                    store_fault(action, element, operation)
 
-                else
-                  warn "Ignoring element '#{action.name}' in operation '#{operation.attributes['name']}' for portType '#{element.attributes['name']}'"
+                  else
+                    warn "Ignoring element '#{action.name}' in operation '#{operation.attributes['name']}' for portType '#{element.attributes['name']}'"
                 end
               end
             else

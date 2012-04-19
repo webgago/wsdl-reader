@@ -15,7 +15,8 @@ module WSDL
       attr_reader :prefixes, :target_namespace
       attr_reader :document, :uri
 
-      delegate :get_operations, :operation?, to: :bindings
+      delegate :operations, :operation?, to: :bindings
+      delegate :lookup_operation_by_element!, to: :messages
 
       def initialize(uri)
         @uri = uri
@@ -32,10 +33,6 @@ module WSDL
 
         process_attributes @document.root.attributes
         process_content @document.root.children
-      end
-
-      def operations
-        bindings.all_operations
       end
 
       private

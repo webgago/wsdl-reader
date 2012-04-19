@@ -18,6 +18,10 @@ module WSDL
         parse! element
       end
 
+      def method_name
+        @name.underscore
+      end
+
       def message
         @name
       end
@@ -31,11 +35,11 @@ module WSDL
 
       def parse!(operation_element)
         operation_element.find_all { |e| e.class == REXML::Element }.each do |action_element|
-          store_action(action_element, operation_element)
+          store_action(action_element)
         end
       end
 
-      def store_action(action_element, operation_element)
+      def store_action(action_element)
         case action_element.name
           when "operation" # soap:operation
             action_element.attributes.each do |name, value|
@@ -47,17 +51,17 @@ module WSDL
               end
             end
           when "input"
-            @input = fill_action(action_element, operation_element)
+            @input = fill_action(action_element)
 
           when "output"
-            @output = fill_action(action_element, operation_element)
+            @output = fill_action(action_element)
 
           when "fault"
-            @fault = fill_action(action_element, operation_element)
+            @fault = fill_action(action_element)
         end
       end
 
-      def fill_action(action_element, operation_element)
+      def fill_action(action_element)
         filling_action = { }
 
         filling_action[:name] = action_element.attributes['name']

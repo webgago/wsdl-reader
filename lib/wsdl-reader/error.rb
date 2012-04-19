@@ -3,6 +3,30 @@ module WSDL
     class ParserError < StandardError
     end
 
+    class LookupError < StandardError
+    end
+
+    class ManyOperationsFoundError < LookupError
+      def initialize(type, element_name)
+        @type, @element_name = type, element_name
+      end
+
+
+      def message
+        "More than one operations found for element: [#@element_name]"
+      end
+    end
+
+    class OperationNotFoundError < LookupError
+      def initialize(type, element_name)
+        @type, @element_name = type, element_name
+      end
+
+      def message
+        "No operation matches for element: [#@element_name]"
+      end
+    end
+
     class FileOpenError < ParserError
     end
   end

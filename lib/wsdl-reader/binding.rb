@@ -23,6 +23,13 @@ module WSDL
         self.map { |_, binding| binding.operations.values }.flatten
       end
 
+      def operations(binding=nil)
+        bindings = binding.nil? ? self : ({ a: self[binding] })
+        bindings.inject({ }) do |hash, (_, b)|
+          hash.merge b.operations
+        end
+      end
+
       def operation?(operation_name)
         any? { |_, binding| binding.operation? operation_name }
       end
@@ -32,6 +39,7 @@ module WSDL
       attr_reader :operations
       attr_reader :name
       attr_reader :type
+      attr_reader :type_nns
       attr_reader :style
       attr_reader :transport
 
@@ -39,6 +47,7 @@ module WSDL
         @operations = Operations.new
         @name       = element.attributes['name']
         @type       = element.attributes['type'] # because of Object#type
+        @type_nns   = @type.split(':').last rescue @type
         @style      = nil
         @transport  = nil
 
@@ -86,7 +95,7 @@ module WSDL
           return name_string.camelize :lower if name_string.underscore == name_string
         end
       end
-      
+
       def store_operation_name(element, operation)
         operation.attributes.each do |name, value|
           case name

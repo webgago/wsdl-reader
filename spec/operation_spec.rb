@@ -2,20 +2,24 @@ require "spec_helper"
 
 describe "WSDL Operation" do
   let(:parser) { WSDL::Reader::Parser.new('spec/fixtures/UserService.wsdl') }
-  let(:binding) { parser.bindings.values.first }
+  let(:binding) { parser.bindings['UserServicePortBinding'] }
   let(:messages) { parser.messages }
-  subject { binding.operations.values.first  }
+  subject { binding.operations['getFirstNameOperation'] }
 
   it "should be WSDL::Reader::Operation instance" do
     should be_a WSDL::Reader::Operation
   end
 
   its :name do
-    should eql "getFirstName"
+    should eql "getFirstNameOperation"
+  end
+
+  its :method_name do
+    should eql "get_first_name_operation"
   end
 
   its :binding do
-   should be binding
+    should be binding
   end
 
   its :soap_action do
