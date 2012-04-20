@@ -14,6 +14,7 @@ module WSDL
       attr_reader :types, :messages, :port_types, :bindings, :services
       attr_reader :prefixes, :target_namespace
       attr_reader :document, :uri
+      alias location uri
 
       delegate :operations, :operation?, to: :bindings
       delegate :lookup_operation_by_element!, to: :messages
