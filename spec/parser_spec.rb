@@ -27,7 +27,7 @@ describe "WSDL Parser" do
 
       its(:bindings) { should be_kind_of WSDL::Reader::Bindings }
 
-      its(:services) { should be_kind_of SOAP::WSDL::Services }
+      its(:services) { should be_kind_of WSDL::Reader::Services }
     end
 
     context "attributes values" do

@@ -65,6 +65,16 @@ module WSDL
         end
       end
 
+      def actions
+        operations.values.map { |o| o.method_name.to_sym }
+      end
+
+      def service_address(services)
+        port = services.service_port_for_binding_name(name)
+        raise LookupError, "service not found for binding '#{name}'" unless port
+        port[:address]
+      end
+
       def operation?(name)
         operations.include? camelize_operation(name)
       end

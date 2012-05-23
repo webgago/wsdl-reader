@@ -1,13 +1,13 @@
-module SOAP
-  class WSDL
+module WSDL
+  module Reader
     class Services < Hash
-      def getServicePortForBindingName( name )
-        self.each do |binding_name, binding|
-          binding.ports.each do |port_name, port|
+      def service_port_for_binding_name( name )
+        self.each do |binding_name, services|
+          services.ports.each do |port_name, port|
             return port if port[:binding].nns == name
           end
         end
-        return nil
+        nil
       end
     end
     
@@ -51,6 +51,7 @@ module SOAP
           end
         }
       end
+
     end
   end
 end
