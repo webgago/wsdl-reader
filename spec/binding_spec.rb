@@ -70,6 +70,10 @@ describe "WSDL Binding" do
     it "#lookup_port_type should lookup port_type from given port_types" do
       subject.lookup_port_type(parser.port_types).name.should eq "UserService"
     end
+
+    it "#actions should return underscore operation names" do
+      subject.actions.should eql [:get_first_name_operation, :get_last_name_operation]
+    end
   end
 
 end
