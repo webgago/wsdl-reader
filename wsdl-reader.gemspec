@@ -23,5 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "guard-rspec"
 
   s.add_runtime_dependency "activesupport"
+  s.add_runtime_dependency "nokogiri"
   #s.add_runtime_dependency "rest-client"
 end

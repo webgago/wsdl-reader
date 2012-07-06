@@ -14,7 +14,7 @@ module SOAP
     include Comparable
     attr_reader :elements
     attr_reader :simpleTypes
-    attr_reader :complexType
+    attr_reader :complexTypes
 
     ANY_SIMPLE_TYPE = %w(duration dateTime time date gYearMonth gYear gMonthDay gDay gMonth 
       boolean base64Binary hexBinary float double anyURI QName NOTATION string normalizedString 

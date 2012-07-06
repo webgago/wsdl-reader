@@ -6,6 +6,8 @@ require "wsdl-reader/error"
 require "wsdl-reader/parser"
 require "wsdl-reader/request"
 
+require "xsd-reader"
+
 module WSDL
   module Reader
     def debugging?

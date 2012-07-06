@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://example.com/UserService/type/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xs:schema xmlns:tns="http://example.com/UserService/type/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:com="http://example.com/common/"
            targetNamespace="http://example.com/UserService/type/" version="1.0">
 
+  <xs:import namespace="http://example.com/common/" schemaLocation="../common.xsd"/>
   <xs:element name="getFirstName" type="tns:GetFirstName"/>
   <xs:element name="getLastName" type="tns:GetLastName"/>
 
-  <xs:complexType name="GetFirstName">
+  <xs:complexType name="GetFirstName" >
     <xs:annotation>
       <xs:documentation>Foo Bar</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="userIdentifier" type="xs:string" minOccurs="0"/>
-      <xs:element name="filter" minOccurs="0">
+      <xs:element name="filter"  minOccurs="0">
         <xs:complexType>
           <xs:sequence>
             <xs:element ref="tns:age"/>
@@ -19,6 +20,9 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="isOut" type="com:ZONE"/>
+      <xs:element ref="com:zone"/>
+      <xs:element name="options" type="com:Options"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
   </xs:complexType>
