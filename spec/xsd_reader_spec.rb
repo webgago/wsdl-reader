@@ -15,7 +15,7 @@ describe XSD::Reader do
 
       context "find global elemnt by name with NS" do
         it "should found [tns:age] element and return instance of XSD::Reader::Element" do
-          subject.find('tns:age').should be_a XSD::Reader::Element
+          subject.find('tns:age').should be_a XSD::Element
         end
 
         it "should raise error if ns prefix [example] not found" do
@@ -32,7 +32,6 @@ describe XSD::Reader do
         end
 
       end
-
     end
 
     context "#complex_types" do
@@ -43,7 +42,7 @@ describe XSD::Reader do
       context "#values" do
         subject { reader.complex_types['http://example.com/UserService/type/'].first }
 
-        it { should be_a XSD::Reader::ComplexType }
+        it { should be_a XSD::ComplexType }
         it "should be a GetFirstName" do
           subject.name.should eql 'GetFirstName'
         end
@@ -67,44 +66,24 @@ describe XSD::Reader do
 
       context "restriction" do
         it "should parse enumeration" do
-          subject.elements.last.type.should be_a XSD::Reader::SimpleType::Restriction
+          subject.elements.last.type.should be_a XSD::SimpleType::Restriction
           subject.elements.last.type.base.should eql 'xs:string'
           subject.elements.last.type.enumeration.should eql %w{male female}
         end
 
         it "should parse minInclusive" do
-          subject.elements.first.type.should be_a XSD::Reader::SimpleType::Restriction
+          subject.elements.first.type.should be_a XSD::SimpleType::Restriction
           subject.elements.first.type.base.should eql 'xs:integer'
           subject.elements.first.type.min.should eql 0
         end
 
         it "should parse maxInclusive" do
-          subject.elements.first.type.should be_a XSD::Reader::SimpleType::Restriction
+          subject.elements.first.type.should be_a XSD::SimpleType::Restriction
           subject.elements.first.type.base.should eql 'xs:integer'
           subject.elements.first.type.max.should eql 100
         end
       end
 
-    end
-
-    context "SchemaResolver" do
-      context "when xsd file on local filesystem" do
-        subject { XSD::Reader::SchemaResolver.new("/tmp/xsd/files/Local.xsd") }
-
-        it "should resolve schema on absolute location" do
-          File.stub(:read).with('/tmp/absolute/path/common.xsd').and_return("xml")
-
-          xml = subject.resolve '/tmp/absolute/path/common.xsd'
-          xml.should eql "xml"
-        end
-
-        it "should resolve schema on relative location" do
-          File.stub(:read).with('/tmp/common.xsd').and_return("xml")
-
-          xml = subject.resolve '../../../common.xsd'
-          xml.should eql "xml"
-        end
-      end
     end
 
   end

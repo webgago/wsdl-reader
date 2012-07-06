@@ -9,6 +9,7 @@ CURRENT_DIR=File.dirname(__FILE__)
 $: << File.expand_path("../lib")
 
 require "wsdl-reader"
+require "xsd-reader"
 
 module CleanXml
   def clean_xml(xml)
