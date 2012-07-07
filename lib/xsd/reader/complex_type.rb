@@ -24,7 +24,7 @@ class XSD::ComplexType
   private
 
   def context(node)
-    node.search('./xs:sequence|./xs:complexContent|./xs:chose').first ||
+    node.search('./xs:sequence|./xs:complexContent|./xs:choice|./xs:all').first ||
         raise("ComplexType must have one of: xs:sequence, xs:complexContent, xs:chose")
   end
 

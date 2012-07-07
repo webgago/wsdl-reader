@@ -15,7 +15,7 @@ describe XSD::Reader do
       its(:namespaces) { should eql tns: 'http://example.com/UserService/type/', xs: 'http://www.w3.org/2001/XMLSchema',
                                     com: "http://example.com/common/", cm: "http://example.com/common/" }
 
-      context "find global elemnt by name with NS" do
+      context "find global element by name with NS" do
         it "should found [tns:age] element and return instance of XSD::Reader::Element" do
           subject.find('http://example.com/UserService/type/', 'age').should be_a XSD::Element
         end
@@ -49,7 +49,7 @@ describe XSD::Reader do
           subject.name.should eql 'GetFirstName'
         end
 
-        it "should have 4 right elements" do
+        it "should have 4 elements" do
           subject.should have(5).elements
           subject.elements.map(&:name).should eql ['userIdentifier', 'filter',  "isOut", "zone", "options"]
           subject.elements.map(&:type).map(&:name).should eql ["string", '<<annonimus>>', "ZONE", "ZONE", "Options"]

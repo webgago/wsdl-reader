@@ -18,7 +18,7 @@ describe XSD::SchemaResolver do
       xml.should eql "xml"
     end
 
-    it "should resolve schema if location is filename" do
+    it "should resolve schema if location is filename only" do
       File.stub(:read).with('/tmp/xsd/files/common.xsd').and_return("xml")
 
       xml = subject.resolve 'common.xsd'
