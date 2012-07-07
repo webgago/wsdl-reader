@@ -1,10 +1,11 @@
 class XSD::ComplexType
-  attr_reader :name, :elements
+  attr_reader :name, :elements, :type
 
   def initialize(node, schema)
     @schema = schema
     @name     = node.attr('name') || "<<annonimus>>"
-    @elements = node.search('./xs:sequence|./xs:complexContent').search('./xs:element').map { |n| schema.create_element(n) }
+    @elements = context(node).search('./xs:element').map { |n| schema.create_element(n) }
+    @type = context_type(node)
   end
 
   def inspect
@@ -18,4 +19,17 @@ class XSD::ComplexType
   def complex?
     true
   end
+
+
+  private
+
+  def context(node)
+    node.search('./xs:sequence|./xs:complexContent|./xs:chose').first ||
+        raise("ComplexType must have one of: xs:sequence, xs:complexContent, xs:chose")
+  end
+
+  def context_type(node)
+    context(node).name.underscore.to_sym
+  end
+
 end

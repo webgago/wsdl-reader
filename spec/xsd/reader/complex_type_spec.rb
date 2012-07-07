@@ -16,18 +16,17 @@ describe XSD::ComplexType do
   </xs:complexType>
 </xs:schema>
     XML
-    File.stub(:read).with('file_path').and_return(@xml)
   end
 
-  let(:xsd) { node(@xml) }
-  let(:reader) { XSD::Reader.new('file_path').parse }
-  let(:schema) { XSD::Schema.new(xsd, reader) }
-  let(:type) { xsd.search('./xs:complexType').first }
+  let(:reader) { create_reader(@xml) }
+  let(:type) { node(@xml).search('./xs:complexType').first }
 
-  subject { described_class.new(type, schema) }
+  subject { described_class.new(type, reader.schemas.first) }
 
   it { should be_complex }
   its(:name) { should eql 'GetLastName' }
+  its(:inspect) { should eql '<ComplexType::GetLastName(userIdentifier:"string", userIdentifier2:"integer")>' }
+  its(:type) { should eql :sequence }
 
   it "parsed element names" do
     subject.elements.map(&:name).should eql %w(userIdentifier userIdentifier2)
@@ -37,5 +36,4 @@ describe XSD::ComplexType do
     subject.elements.map(&:type).map(&:name).should eql %w(string integer)
   end
 
-  its(:inspect) { should eql '<ComplexType::GetLastName(userIdentifier:"string", userIdentifier2:"integer")>' }
 end

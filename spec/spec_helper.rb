@@ -21,9 +21,17 @@ module XmlHelper
   end
 end
 
+module XSDReaderHelper
+  def create_reader(xml)
+    File.stub(:read).with('file_path').and_return(xml)
+    XSD::Reader.new('file_path').parse
+  end
+end
+
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
   config.include XmlHelper
+  config.include XSDReaderHelper
 end

@@ -24,7 +24,6 @@ module XSD
       find_element(ns_href, name) || find_type(ns_href, name)
     end
 
-
     def parse
       read!
       process_import!
