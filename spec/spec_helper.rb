@@ -11,9 +11,13 @@ $: << File.expand_path("../lib")
 require "wsdl-reader"
 require "xsd-reader"
 
-module CleanXml
+module XmlHelper
   def clean_xml(xml)
     xml.gsub(/\n/,"").gsub(/\r/,"").gsub(/'/,'"')
+  end
+
+  def node(xml)
+    Nokogiri.XML(xml).root
   end
 end
 
@@ -21,5 +25,5 @@ RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
-  config.include CleanXml
+  config.include XmlHelper
 end

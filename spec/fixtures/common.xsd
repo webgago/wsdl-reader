@@ -16,6 +16,8 @@
       <xs:element name="two" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+
   <xs:element name="zone" type="cm:ZONE"/>
+  <xs:element name="options" type="cm:Options"/>
 
 </xs:schema>

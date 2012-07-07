@@ -5,42 +5,44 @@ describe XSD::Reader do
     let(:reader) { XSD::Reader.new('spec/fixtures/UserService.xsd').parse }
     subject { reader }
 
-    its(:namespaces) { should eql tns: 'http://example.com/UserService/type/', xs: 'http://www.w3.org/2001/XMLSchema', com: "http://example.com/common/" }
+    its(:namespaces) { should eql tns: 'http://example.com/UserService/type/', xs: 'http://www.w3.org/2001/XMLSchema',
+                                  com: "http://example.com/common/", cm: "http://example.com/common/" }
 
-    context "#elements" do
-      subject { reader.elements }
+    context "#elements_registry" do
+      subject { reader.elements_registry }
       its('keys') { should eql ['http://example.com/UserService/type/',  "http://example.com/common/"] }
       its('values.first') { should have(4).elements }
-      its(:namespaces) { should eql tns: 'http://example.com/UserService/type/', xs: 'http://www.w3.org/2001/XMLSchema', com: "http://example.com/common/" }
+      its(:namespaces) { should eql tns: 'http://example.com/UserService/type/', xs: 'http://www.w3.org/2001/XMLSchema',
+                                    com: "http://example.com/common/", cm: "http://example.com/common/" }
 
       context "find global elemnt by name with NS" do
         it "should found [tns:age] element and return instance of XSD::Reader::Element" do
-          subject.find('tns:age').should be_a XSD::Element
+          subject.find('http://example.com/UserService/type/', 'age').should be_a XSD::Element
         end
 
         it "should raise error if ns prefix [example] not found" do
-          expect { subject.find('example:age') }.to raise_error "namespace [example] not found"
+          expect { subject.find('example', 'age') }.to raise_error XSD::ElementsNotFound, 'elements in namespace [example] not found'
         end
 
         it "should raise error if elements in given namespace [example] not found" do
           subject.stub(:namespaces).and_return({ :example => 'http://example.com/type' })
-          expect { subject.find('example:age111') }.to raise_error "elements in namespace [http://example.com/type] not found"
+          expect { subject.find('example', 'age111') }.to raise_error XSD::ElementsNotFound, 'elements in namespace [example] not found'
         end
 
         it "should return nil if [tns:age1] not found" do
-          subject.find('tns:age1').should be_nil
+          subject.find('http://example.com/UserService/type/', 'age1').should be_nil
         end
 
       end
     end
 
-    context "#complex_types" do
-      subject { reader.complex_types }
+    context "#types_registry" do
+      subject { reader.types_registry }
       it { should have_key 'http://example.com/UserService/type/' }
-      its(['http://example.com/UserService/type/']) { should have(2).elements }
+      its(%w(http://example.com/UserService/type/)) { should have(2).elements }
 
       context "#values" do
-        subject { reader.complex_types['http://example.com/UserService/type/'].first }
+        subject { reader.types_registry['http://example.com/UserService/type/'].first }
 
         it { should be_a XSD::ComplexType }
         it "should be a GetFirstName" do
@@ -50,8 +52,7 @@ describe XSD::Reader do
         it "should have 4 right elements" do
           subject.should have(5).elements
           subject.elements.map(&:name).should eql ['userIdentifier', 'filter',  "isOut", "zone", "options"]
-          complex = '<ComplexType::<<annonimus>> ["age:<SimpleType::<<annonimus>> base=xs:integer>", "gender:<SimpleType::<<annonimus>> base=xs:string>"]>'
-          subject.elements.map(&:type).map(&:to_s).should eql ["xs:string", complex, "com:ZONE", "cm:ZONE", "com:Options"]
+          subject.elements.map(&:type).map(&:name).should eql ["string", '<<annonimus>>', "ZONE", "ZONE", "Options"]
         end
 
         it "filter should have 2 inner elements" do
@@ -62,7 +63,7 @@ describe XSD::Reader do
 
     context "Simple type" do
 
-      subject { reader.complex_types['http://example.com/UserService/type/'].first.elements[1] }
+      subject { reader.types_registry['http://example.com/UserService/type/'].first.elements[1] }
 
       context "restriction" do
         it "should parse enumeration" do
