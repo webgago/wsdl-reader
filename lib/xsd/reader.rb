@@ -3,6 +3,8 @@ require "xsd/reader/schema"
 require "xsd/reader/schema_resolver"
 require "xsd/reader/elements_registry"
 require "xsd/reader/types_registry"
+require "xsd/reader/qname"
+require "xsd/reader/elements_list"
 
 module XSD
   class Reader
@@ -24,20 +26,6 @@ module XSD
       find_element(ns_href, name) || find_type(ns_href, name)
     end
 
-    def parse
-      read!
-      process_import!
-      parse_schemas!
-      @types_registry  = XSD::TypesRegistry.new(namespaces)
-      @elements_registry = XSD::ElementsRegistry.new(namespaces)
-      parse_simple
-      parse_elements
-      parse_complex
-      self
-    end
-
-    private
-
     def find_element(ns_href, name)
       begin
         elements_registry.find(ns_href, name)
@@ -50,6 +38,24 @@ module XSD
       types_registry.find(ns_href, name)
     end
 
+    def parse
+      read!
+      process_import!
+      parse_schemas!
+      @types_registry    = XSD::TypesRegistry.new(namespaces)
+      @elements_registry = XSD::ElementsRegistry.new(namespaces)
+      parse_simple
+      parse_elements
+      parse_complex
+      self
+    end
+
+    def inspect
+      ""
+    end
+
+    private
+
     def read!
       @xml = Nokogiri::XML(File.read(@file))
     end
@@ -58,7 +64,7 @@ module XSD
       resolver = SchemaResolver.new(@file)
       @xml.search('/xs:schema/xs:import').each do |i|
         ns = resolver.resolve_node(i['schemaLocation']).namespaces
-        ns.each { |n, href| @xml.root.add_namespace(n.gsub('xmlns:',''), href) }
+        ns.each { |n, href| @xml.root.add_namespace(n.gsub('xmlns:', ''), href) }
         i.swap resolver.resolve_node(i['schemaLocation'])
       end
     end

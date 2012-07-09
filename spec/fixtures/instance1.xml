@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<loc:getFirstNameObj xmlns:cm="http://example.com/common/"
+ xmlns:tns="http://example.com/UserService/type/"
+ xmlns:loc="http://example.com/UserService/type/loc"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://example.com/UserService/type/loc file:/Users/antonsozontov/Projects/ezags/rzags-service/vendor/wsdl-reader/spec/fixtures/LocalUserService.xsd">
+    <tns:getFirstName>
+        <userIdentifier>xoMPRY</userIdentifier>
+        <filter>
+            <tns:age>94</tns:age>
+            <tns:gender>male</tns:gender>
+        </filter>
+        <isOut>a</isOut>
+        <cm:zone>b</cm:zone>
+        <options>
+            <one>p6E58</one>
+            <two>Vm1sk87pkU0pE4EKKSY</two>
+        </options>
+    </tns:getFirstName>
+    <tns:getLastName>
+        <userIdentifier>TvumwjAi7ixjXXI6HL.pROv</userIdentifier>
+        <filter>
+            <tns:age>6</tns:age>
+            <tns:gender>male</tns:gender>
+        </filter>
+        <isOut>a</isOut>
+        <cm:zone>c</cm:zone>
+        <options>
+            <one>yGYv3G</one>
+            <two>k3h9Jl36sxN1TR1</two>
+        </options>
+        <userIdentifier2>lSZtYMUGP2i2FS</userIdentifier2>
+    </tns:getLastName>
+</loc:getFirstNameObj>

@@ -9,16 +9,11 @@ class XSD::TypesRegistry < Hash
   end
 
   def find(ns, name)
-    return create_builtin_type(ns, name) if builtin_types?(ns)
     raise XSD::TypeNotFound.new("types in namespace [#{ns}] not found") unless self[ns]
     self[ns].find { |e| e.name == name }
   end
 
-  def builtin_types?(ns)
-    ns == 'http://www.w3.org/2001/XMLSchema'
-  end
-
-  def create_builtin_type(ns, name)
-    XSD::SimpleType::Builtin.new(ns, name)
+  def find_by_name(name)
+    self.map { |_, array| array.find { |e| e.name == name } }.flatten.compact
   end
 end

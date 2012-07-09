@@ -1,13 +1,22 @@
 class XSD::SimpleType
+  attr_reader :name, :schema
+
+  def initialize(node, schema)
+    @schema = schema
+    @name = node.attr('name') || '<<annonimus>>'
+  end
 
   def complex?
     false
   end
 
-  class Builtin < self
-    attr_reader :name
+  def namespace
+    schema.target_namespace
+  end
 
-    def initialize(ns, name)
+  class Builtin < self
+    def initialize(ns, name, schema)
+      @schema = schema
       @name = name
       @ns   = ns
     end
@@ -22,14 +31,18 @@ class XSD::SimpleType
         raise "do not know mapping for builtin type '#{name}'"
       end
     end
+
+    def inspect
+      klass.inspect
+    end
+
+    def namespace
+      nil
+    end
   end
 
   class Base < self
-    attr_reader :name
-
-    def initialize(node)
-      @name = node.attr('name') || '<<annonimus>>'
-    end
+    attr_reader :name, :schema
 
     def inspect
       "<SimpleType::#{name}#{yield}>"
@@ -43,7 +56,7 @@ class XSD::SimpleType
   class Restriction < Base
     attr_reader :base
 
-    def initialize(node)
+    def initialize(node, schema)
       super
       @node = node.search('./xs:restriction')
       @base = @node.attr('base').value rescue nil

@@ -4,8 +4,6 @@
            targetNamespace="http://example.com/UserService/type/" version="1.0">
 
   <xs:import namespace="http://example.com/common/" schemaLocation="common.xsd"/>
-  <xs:element name="getFirstName" type="tns:GetFirstName"/>
-  <xs:element name="getLastName" type="tns:GetLastName"/>
 
   <xs:complexType name="GetFirstName">
     <xs:annotation>
@@ -33,11 +31,11 @@
       <xs:documentation>Foo Bar</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
-      <xs:restriction base="tns:GetFirstName">
+      <xs:extension base="tns:GetFirstName">
         <xs:sequence>
-          <xs:element name="userIdentifier" type="xs:string" minOccurs="0"/>
+          <xs:element name="userIdentifier2" type="xs:string"/>
         </xs:sequence>
-      </xs:restriction>
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
 
@@ -58,4 +56,7 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
+  
+  <xs:element name="getFirstName" type="tns:GetFirstName"/>
+  <xs:element name="getLastName" type="tns:GetLastName"/>
 </xs:schema>
