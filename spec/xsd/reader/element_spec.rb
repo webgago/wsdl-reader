@@ -127,4 +127,49 @@ describe XSD::Element do
     its(:inspect_name_type) { should eql 'options:"<<annonimus>>"(one:"string", two:"string")' }
     its(:instance) { should eql "<cm:options><tp:one></tp:one><tp:two></tp:two></cm:options>" }
   end
+
+  context "when parse xml" do
+    before do
+      @xml = <<-XML
+<xs:schema targetNamespace="http://www.example.com/common"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cm="http://www.example.com/common" xmlns:tp="http://www.example.com/type">
+
+  <xs:element name="options"
+    minOccurs="1" maxOccurs="1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tp:one"/>
+        <xs:element ref="tp:two"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:schema targetNamespace="http://www.example.com/type"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tp="http://www.example.com/type">
+
+    <xs:element name="one" type="xs:integer"/>
+    <xs:element name="two" type="xs:string"/>
+  </xs:schema>
+</xs:schema>
+      XML
+      File.stub(:read).with('file_path').and_return(@xml)
+
+      @xml_instance = Nokogiri::XML(<<-XML).root
+<cm:options xmlns:cm="http://www.example.com/common" xmlns:tp="http://www.example.com/type">
+  <tp:one>1</tp:one>
+  <tp:two>2</tp:two>
+</cm:options>
+      XML
+    end
+
+    let(:xsd) { node(@xml) }
+    let(:element) { xsd.search('/xs:schema/xs:element').first }
+    let(:reader) { XSD::Reader.new('file_path').parse }
+    let(:schema) { XSD::Schema.new(xsd, reader) }
+
+    subject { described_class.new(element, schema).parse(@xml_instance) }
+
+    its('elements.first.value') { should eql 1 }
+    its('elements.last.value') { should eql '2' }
+  end
 end

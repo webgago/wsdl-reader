@@ -22,7 +22,7 @@ class XSD::Schema
     return if qname.nil?
     ns, name = qname.split(':')
     ns_href  = namespaces[ns.to_sym]
-    raise "namespace [#{ns}] not found" unless ns_href
+    raise "namespace [#{ns}] not found of qname #{qname}" unless ns_href
 
     if builtin_types?(ns_href)
       create_builtin_type(ns_href, name)

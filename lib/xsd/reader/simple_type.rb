@@ -3,22 +3,39 @@ class XSD::SimpleType
 
   def initialize(node, schema)
     @schema = schema
-    @name = node.attr('name') || '<<annonimus>>'
+    @name   = node.attr('name') || '<<annonimus>>'
   end
 
   def complex?
     false
   end
 
+  def klass
+    Object
+  end
+
   def namespace
     schema.target_namespace
+  end
+
+  def parse(node)
+    val       = node.text
+    converter = { String  => -> { val },
+                  Integer => -> { val.to_i }, Float => -> { val.to_f }
+    }[klass]
+
+    if converter
+      converter.call
+    else
+      raise(NotImplementedError, "not implemented type parsing: #{klass}")
+    end
   end
 
   class Builtin < self
     def initialize(ns, name, schema)
       @schema = schema
-      @name = name
-      @ns   = ns
+      @name   = name
+      @ns     = ns
     end
 
     def klass
@@ -61,6 +78,11 @@ class XSD::SimpleType
       @node = node.search('./xs:restriction')
       @base = @node.attr('base').value rescue nil
       raise "restriction should have 'base' attribute: \n#{node.inspect}" unless @base
+      @base = schema.find(@base)
+    end
+
+    def klass
+      @base.klass
     end
 
     def enumeration

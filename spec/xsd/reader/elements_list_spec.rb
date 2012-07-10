@@ -37,7 +37,7 @@ describe XSD::ElementsList do
   end
 
   it "should be kind of Array" do
-    described_class.new(stub(children: [], :[] => nil), double).should be_kind_of Array
+    described_class.new(stub(elements: [], :[] => nil), double).should be_kind_of Array
   end
 
   let(:reader) { create_reader(@xml) }

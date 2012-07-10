@@ -19,13 +19,12 @@ class XSD::ElementsList < Array
     @min = @min.to_i if @min
     @max = @max.to_i if @max
 
-    list = list_node.children.map do |node|
+    list = list_node.elements.map do |node|
       case node.name
       when 'element'
         XSD::Element.new(node, schema)
       when 'choice', 'sequence', 'all'
         schema.create_list(node)
-      when 'text'
       else
         raise("not supported node on create_list:\n#{node.name}: #{node.inspect}")
       end

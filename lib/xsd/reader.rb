@@ -65,7 +65,7 @@ module XSD
       @xml.search('/xs:schema/xs:import').each do |i|
         ns = resolver.resolve_node(i['schemaLocation']).namespaces
         ns.each { |n, href| @xml.root.add_namespace(n.gsub('xmlns:', ''), href) }
-        i.swap resolver.resolve_node(i['schemaLocation'])
+        i.children = resolver.resolve_node(i['schemaLocation'])
       end
     end
 

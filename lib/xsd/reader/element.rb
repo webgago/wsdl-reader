@@ -4,19 +4,34 @@ require "xsd/reader/simple_type_factory"
 
 class XSD::Element
   attr_reader :name, :qname, :type, :min_occurs, :max_occurs, :ref_qname
-  attr_reader :node, :elements_registry, :schema
+  attr_reader :node, :schema, :value
 
   attr_writer :ref
 
   def initialize(node, schema)
     raise "node must be a <element>" unless node.name == 'element'
-    @node              = node
-    @name              = node.attr('name')
-    @ref_qname         = node.attr('ref')
-    @min_occurs        = (node.attr('minOccurs') || 1).to_i
-    @max_occurs        = node.attr('maxOccurs')
-    @schema            = schema
-    @elements_registry = schema.elements_registry
+    @node       = node
+    @name       = node.attr('name')
+    @ref_qname  = node.attr('ref')
+    @min_occurs = (node.attr('minOccurs') || 1).to_i
+    @max_occurs = node.attr('maxOccurs')
+    @schema     = schema
+    @value      = nil
+  end
+
+  def parse(node)
+    if type.complex?
+      elements.each do |e|
+        e.parse(node.search("./#{e.qname}").first)
+      end
+    else
+      if node.elements.empty?
+        @value = type.parse(node)
+      else
+        raise("#{name} must be simple type, but given: \n#{node}")
+      end
+    end
+    self
   end
 
   def max_occurs

@@ -68,19 +68,19 @@ describe XSD::Reader do
       context "restriction" do
         it "should parse enumeration" do
           subject.elements.last.type.should be_a XSD::SimpleType::Restriction
-          subject.elements.last.type.base.should eql 'xs:string'
+          subject.elements.last.type.base.inspect.should eql 'String'
           subject.elements.last.type.enumeration.should eql %w{male female}
         end
 
         it "should parse minInclusive" do
           subject.elements.first.type.should be_a XSD::SimpleType::Restriction
-          subject.elements.first.type.base.should eql 'xs:integer'
+          subject.elements.first.type.base.inspect.should eql 'Integer'
           subject.elements.first.type.min.should eql 0
         end
 
         it "should parse maxInclusive" do
           subject.elements.first.type.should be_a XSD::SimpleType::Restriction
-          subject.elements.first.type.base.should eql 'xs:integer'
+          subject.elements.first.type.base.inspect.should eql 'Integer'
           subject.elements.first.type.max.should eql 100
         end
       end
